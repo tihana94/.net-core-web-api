@@ -43,6 +43,12 @@ namespace APIfornetapplication.Controllers
         [HttpPost]
         public async Task<IActionResult> AddWalkDifficultyAsync(Models.DTO.AddWalkDiffucultyRequest addWalkDiffucultyRequest)
         {
+            //validate response
+            if(!ValidateAddWalkDifficutlyAsync(addWalkDiffucultyRequest))
+            {
+                return BadRequest(ModelState);
+
+            }
             //convert dto to domain model
             var walkDifficultyDomain = new Models.Domain.WalkDifficulty
             {
@@ -66,6 +72,11 @@ namespace APIfornetapplication.Controllers
         [Route("{id:gui}")]
         public async Task<IActionResult> UpdateWalkDifficultyAsing(Guid id, Models.DTO.UpdateWalkDifficultyRequest updateWalkDifficultyRequest)
         {
+            //validate response
+            if(!ValidateUpdateWalkDifficutlyAsync(updateWalkDifficultyRequest))
+            {
+                return BadRequest(ModelState);
+            }
             //convert dto to domain
             var walkDifficultyDomain = new Models.Domain.WalkDifficulty
             {
@@ -96,9 +107,50 @@ namespace APIfornetapplication.Controllers
             return Ok(walkdifficultyDTO);
         }
 
+        #region Private methods
+
+        private bool ValidateAddWalkDifficutlyAsync(Models.DTO.AddWalkDiffucultyRequest addWalkDiffucultyRequest)
+        {
+            if(addWalkDiffucultyRequest == null)
+            {
+                ModelState.AddModelError(nameof(addWalkDiffucultyRequest), $"{nameof(addWalkDiffucultyRequest)} is required");
+                return false;
+            }
+            if(string.IsNullOrWhiteSpace(addWalkDiffucultyRequest.Code))
+            {
+                ModelState.AddModelError(nameof(addWalkDiffucultyRequest.Code), $"{nameof(addWalkDiffucultyRequest.Code)} is required");
+                return false;
+            }
+            if (ModelState.ErrorCount > 0)
+            {
+                return false;
+            }
+            return true;
+        }
+        private bool ValidateUpdateWalkDifficutlyAsync(Models.DTO.UpdateWalkDifficultyRequest updateWalkDiffucultyRequest)
+        {
+            if (updateWalkDiffucultyRequest == null)
+            {
+                ModelState.AddModelError(nameof(updateWalkDiffucultyRequest), $"{nameof(updateWalkDiffucultyRequest)} is required");
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(updateWalkDiffucultyRequest.Code))
+            {
+                ModelState.AddModelError(nameof(updateWalkDiffucultyRequest.Code), $"{nameof(updateWalkDiffucultyRequest.Code)} is required");
+                return false;
+            }
+            if (ModelState.ErrorCount > 0)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        #endregion
+
     }
 
 
 
-    }
+}
 
