@@ -44,11 +44,12 @@ namespace APIfornetapplication.Controllers
         public async Task<IActionResult> AddWalkDifficultyAsync(Models.DTO.AddWalkDiffucultyRequest addWalkDiffucultyRequest)
         {
             //validate response
-            if(!ValidateAddWalkDifficutlyAsync(addWalkDiffucultyRequest))
+           /* if(!ValidateAddWalkDifficutlyAsync(addWalkDiffucultyRequest))
             {
                 return BadRequest(ModelState);
 
             }
+           */
             //convert dto to domain model
             var walkDifficultyDomain = new Models.Domain.WalkDifficulty
             {
@@ -73,10 +74,12 @@ namespace APIfornetapplication.Controllers
         public async Task<IActionResult> UpdateWalkDifficultyAsing(Guid id, Models.DTO.UpdateWalkDifficultyRequest updateWalkDifficultyRequest)
         {
             //validate response
-            if(!ValidateUpdateWalkDifficutlyAsync(updateWalkDifficultyRequest))
+           /* if(!ValidateUpdateWalkDifficutlyAsync(updateWalkDifficultyRequest))
             {
                 return BadRequest(ModelState);
             }
+           */
+           
             //convert dto to domain
             var walkDifficultyDomain = new Models.Domain.WalkDifficulty
             {

@@ -68,10 +68,11 @@ namespace APIfornetapplication.Controllers
         public async Task<IActionResult> AddRegionAsync(Models.DTO.AddRegionRequest addRegionRequest)
         {
             //validate the request
-            if(!ValidateAddRegionAsync(addRegionRequest))
+           /* if(!ValidateAddRegionAsync(addRegionRequest))
             {
                 return BadRequest();
             }
+           */
             //request (DTO) to Domain model
             var region = new Models.Domain.Region()
             {
@@ -129,11 +130,12 @@ namespace APIfornetapplication.Controllers
         public async Task<IActionResult> UpdateRegionAsync([FromRoute]Guid id, [FromBody]Models.DTO.UpdateRegionRequest updateRegionRequest )
         {
             //validate request
-            if(!ValidateUpdateRegionAsync(updateRegionRequest))
+          /*  if(!ValidateUpdateRegionAsync(updateRegionRequest))
             {
                 return BadRequest(ModelState);
 
             }
+          */
             //Convert DTO to Domain Model
             var region = new Models.Domain.Region()
             {

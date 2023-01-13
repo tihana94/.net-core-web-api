@@ -60,6 +60,7 @@ namespace APIfornetapplication.Controllers
             {
                 return BadRequest(ModelState);
             }
+           
             //convert dto to domain object
             var walkDomain = new Models.Domain.Walk
             {
@@ -94,6 +95,7 @@ namespace APIfornetapplication.Controllers
                 return BadRequest(ModelState);
 
             }
+           
             //convert dto to domain object
             var walkDomain = new Models.Domain.Walk
             {
@@ -147,20 +149,22 @@ namespace APIfornetapplication.Controllers
         #region Private methods 
         private async Task<bool> ValidateAddWalkAsync(AddWalkRequest addWalkRequest)
         {
-            if (addWalkRequest.Name == null)
+           /* if (addWalkRequest == null)
             {
-                ModelState.AddModelError(nameof(addWalkRequest.Name), $"{nameof(addWalkRequest.Name)} cannot be empty.");
+                ModelState.AddModelError(nameof(addWalkRequest), $"{nameof(addWalkRequest)} cannot be empty.");
             }
             if (!string.IsNullOrWhiteSpace(addWalkRequest.Name))
             {
                 ModelState.AddModelError(nameof(addWalkRequest.Name), $"{nameof(addWalkRequest.Name)} is required.");
 
             }
+           
             if (addWalkRequest.Length <= 0)
             {
                 ModelState.AddModelError(nameof(addWalkRequest.Length), $"{nameof(addWalkRequest.Length)} should be greater then zero.");
 
             }
+            */
             var region =await regionRepository.GetAsync(addWalkRequest.RegionId);
             if (region == null)
             {
@@ -184,6 +188,7 @@ namespace APIfornetapplication.Controllers
         }
         private async Task<bool> ValidateUpdateWalkAsync(Models.DTO.UpdateWalkRequest updateWalkRequest)
         {
+            /*
             if (updateWalkRequest.Name == null)
             {
                 ModelState.AddModelError(nameof(updateWalkRequest.Name), $"{nameof(updateWalkRequest.Name)} cannot be empty.");
@@ -198,6 +203,7 @@ namespace APIfornetapplication.Controllers
                 ModelState.AddModelError(nameof(updateWalkRequest.Length), $"{nameof(updateWalkRequest.Length)} should be greater then zero.");
 
             }
+            */
             var region = await regionRepository.GetAsync(updateWalkRequest.RegionId);
             if (region == null)
             {

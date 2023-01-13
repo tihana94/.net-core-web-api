@@ -1,5 +1,6 @@
 using APIfornetapplication.Data;
 using APIfornetapplication.Repositories;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddFluentValidation(options => options.RegisterValidatorsFromAssemblyContaining<Program>());
 
 //for database injection
 builder.Services.AddDbContext<dbcontext>(options =>
